@@ -1,0 +1,130 @@
+In Git Bash
+
+To setup git for user- 
+-git config --global user.name name
+	Sets name to name
+-git config --global user.email your_email@example.com
+	Sets email to your_email@example.com
+
+-cd <folderName>
+	Opens folder named folderName in current directory
+	
+-cd ..
+	Goes back one folder
+	
+-cd~
+	Goes to home directory of user
+	
+-ls
+	Shows all files in current directory
+
+
+-ctrl+d comes out of cat command
+
+
+
+-git init
+	Initializes current directory in git
+	
+-git status 
+	Shows status of gits
+		the files that have been modified or are unstaged etc
+-git status -s 
+	Shows short version of status
+		
+-touch <fileName>
+	Creates a new file
+	
+-git add <fileName>
+	Adds file name to staged area
+	git add . adds all files to staged area
+	
+-git rm <fileName>
+	Removes file fileName completely
+	
+-git rm --cached <fileName>
+	Removes file fileName from staged area if file is in staged area
+	Makes file untracked if it is committed
+	
+	
+-git commit <fileName> -m "message"
+	Commits file fileName with message 
+	
+-git commit -a -m "message"
+	Commits all staged files with message
+
+-git log 
+	Shows all commits
+	
+-git log -p -n
+	This prints only the last n number of commits with all differences
+	q for quit
+	
+-git diff
+	Shows difference between working tree and staged area
+	
+-git diff --staged
+	Shows difference between files in staging area and last commit
+	
+-git branch <branchName>
+	Opens new branch with name branchName
+	
+-git checkout <fileName>
+	Matches working directory with last commit
+	
+-git checkout -f
+	Matches all files with last commit
+	
+-git checkout <branchName>
+	Moves to branch branchName
+	
+-git merge <branchName>
+	Merges branchName with master branch
+	
+-git remote add origin <url>
+	Adds remote repository of url specified and names it origin
+	
+-git remote
+	Shows all remote repositories
+	
+-git remote -v
+	Shows url of where to push and fetch
+	
+-git push origin master
+	Pushes master branch to origin remote repository
+		Similarly we can push other branches
+	This will fail if the repository is private
+	
+Read/Write Access to github for computer - 
+	To create key
+	ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+		It will ask for file to save the key in
+			press enter
+		It will ask for passphrase
+			Leave it empty (press enter)
+		It will ask for passphrase
+			press enter 
+	
+	To deploy key
+		eval `ssh-agent -s`
+			This will give agent process id
+		ssh-add ~/.ssh/id_rsa
+			This adds key to your git
+	
+	To add key to github account
+		cat ~/.ssh/id_rsa.pub
+			shows content of key
+		Copy content of key and paste it in new key on github 	
+		
+-git remote origin set-url <url>
+	Changes url of origin
+	
+-git clone <url> folderName
+	Clones code in url to folder folderName
+	
+-touch .gitignore
+	Any file name written in gitignore file will not be pushed or pulled
+	Also won't be committed
+		If only file name is written then it will ignore all files of that name
+		If /fileName is written then it will only ignore that file from current directory
+		If *.extension is written then it will ignore all files with that extension
