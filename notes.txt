@@ -1,21 +1,27 @@
 In Git Bash
 
+-`mkdir folderName`
+	Makes a new directory with name folderName
+
+-`touch fileName.ext`
+	Makes a new file with name fileName and extension ext
+
 To setup git for user- 
--git config --global user.name name
+-`git config --global user.name name`
 	Sets name to name
--git config --global user.email your_email@example.com
+-`git config --global user.email your_email@example.com`
 	Sets email to your_email@example.com
 
--cd <folderName>
+-`cd <folderName>`
 	Opens folder named folderName in current directory
 	
--cd ..
+-`cd ..`
 	Goes back one folder
 	
--cd~
+-`cd ~`
 	Goes to home directory of user
 	
--ls
+-`ls`
 	Shows all files in current directory
 
 
@@ -23,81 +29,107 @@ To setup git for user-
 
 
 
--git init
+-`git init`
 	Initializes current directory in git
 	
--git status 
+-`git status` 
 	Shows status of gits
 		the files that have been modified or are unstaged etc
--git status -s 
+-`git status -s` 
 	Shows short version of status
 		
--touch <fileName>
+-`touch <fileName>`
 	Creates a new file
 	
--git add <fileName>
+-`git add <fileName>`
 	Adds file name to staged area
 	git add . adds all files to staged area
 	
--git rm <fileName>
+-`git rm <fileName>`
 	Removes file fileName completely
 	
--git rm --cached <fileName>
+-`git rm --cached <fileName>`
 	Removes file fileName from staged area if file is in staged area
 	Makes file untracked if it is committed
 	
 	
--git commit <fileName> -m "message"
+-`git commit <fileName> -m "message"`
 	Commits file fileName with message 
 	
--git commit -a -m "message"
+-`git commit -a -m "message"`
 	Commits all staged files with message
 
--git log 
+-`git log` 
 	Shows all commits
 	
--git log -p -n
+-`git log -p -n`
 	This prints only the last n number of commits with all differences
 	q for quit
 	
--git diff
+-`git diff`
 	Shows difference between working tree and staged area
 	
--git diff --staged
+-`git diff --staged`
 	Shows difference between files in staging area and last commit
 	
--git branch <branchName>
+-`git branch <branchName>`
 	Opens new branch with name branchName
+
+-`git checkout otherBranch fileName` 
+	(Used in branch in which to bring file to)
+	Pulls fileName file from otherBranch to current branch and puts it in staged area
 	
--git checkout <fileName>
-	Matches working directory with last commit
+-`git checkout <fileName>`
+	Matches file in working tree with last commit
 	
--git checkout -f
+-`git restore <fileName>` 
+	Matches file in working tree with staged area
+	
+-`git checkout -f`
 	Matches all files with last commit
 	
--git checkout <branchName>
+-`git checkout <branchName>`
 	Moves to branch branchName
 	
--git merge <branchName>
-	Merges branchName with master branch
+-`git merge <branchName>`
+	Merges branchName with current branch
+
+	If a file is edited on the same line in two branches 
+	And merge command is used to merge these branches, then a merge conflict arises
+		Suppose there are 2 branches branch1 and branch2
+		A file with 1 line of text is edited differently in both branches and committed
+		Now in branch1 if `git merge branch2` command is used then this is shown
+			```CONFLICT (add/add): Merge conflict in fileName.txt
+			Auto-merging fileName.txt
+			Automatic merge failed; fix conflicts and then commit the result.```
+
+			Now if the file is opened it will look like this
+			```<<<<<<< HEAD
+			Edits made from branch1
+			=======
+			Edits made from branch2
+			>>>>>>> branch2```
+
+			Delete what you want to remove and then use `git add fileName` to stage merge conflict
+			Now after using `git commit fileName -m "message"` the merge conflict is resolved
 	
--git remote add origin <url>
+-`git remote add origin <url>`
 	Adds remote repository of url specified and names it origin
 	
--git remote
+-`git remote`
 	Shows all remote repositories
 	
--git remote -v
+-`git remote -v`
 	Shows url of where to push and fetch
 	
--git push origin master
+-`git push origin master`
 	Pushes master branch to origin remote repository
 		Similarly we can push other branches
 	This will fail if the repository is private
 	
 Read/Write Access to github for computer - 
 	To create key
-	ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+	`ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`
 		It will ask for file to save the key in
 			press enter
 		It will ask for passphrase
@@ -106,25 +138,51 @@ Read/Write Access to github for computer -
 			press enter 
 	
 	To deploy key
-		eval `ssh-agent -s`
+		` eval `ssh-agent -s` `
 			This will give agent process id
-		ssh-add ~/.ssh/id_rsa
+		`ssh-add ~/.ssh/id_rsa`
 			This adds key to your git
 	
 	To add key to github account
-		cat ~/.ssh/id_rsa.pub
+		`cat ~/.ssh/id_rsa.pub`
 			shows content of key
 		Copy content of key and paste it in new key on github 	
 		
--git remote origin set-url <url>
+-`git remote origin set-url <url>`
 	Changes url of origin
 	
--git clone <url> folderName
+-`git clone <url> folderName`
 	Clones code in url to folder folderName
 	
--touch .gitignore
+-`touch .gitignore`
 	Any file name written in gitignore file will not be pushed or pulled
 	Also won't be committed
 		If only file name is written then it will ignore all files of that name
 		If /fileName is written then it will only ignore that file from current directory
 		If *.extension is written then it will ignore all files with that extension
+		
+		
+		
+Push/Pull
+	Once a repository has been forked to your account, you can then commit changes to it
+	Create a new directory where you will work on the project
+
+	-`git clone <url>`
+		This will clone files from url to your directory
+	
+	-`cd directoryName`
+		To go to the directory where the forked project has been cloned
+	
+	After making edits 
+	-`git push origin master`
+		This will push your commits to your forked repository
+	
+	Now go to your forked repository on github
+	There you will see a line saying this branch is n commits ahead of repositoryName(repository you forked from)
+	There will be a pull request option
+	Doing this will request that the repository you forked from pulls your changes
+
+
+	-`git pull origin master` 
+		This will pull changes made to origin branch to your master branch
+		
