@@ -149,7 +149,7 @@ Read/Write Access to github for computer -
 		Copy content of key and paste it in new key on github 	
 		
 -`git remote set-url origin <url>`
-
+	//Thanks for your contribution
 	Changes url of origin
 	
 -`git clone <url> folderName`
