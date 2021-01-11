@@ -183,8 +183,11 @@ Push/Pull
 	There will be a pull request option
 	Doing this will request that the repository you forked from pulls your changes
 
-
-	-`git pull origin master` 
-		This will pull changes made to origin branch to your master branch
-
-		
+	-`git remote add upstream <Url-of-repository-you-forked-from>` 
+		This will add a remote repository named upstream 
+	-`git fetch upstream`
+		Fetches the contents of repository to upstream
+	-`git merge upstream/master`
+		Updates you local git repo with contents of upstream
+	
+(#upstream, origin and master are conventional names)
