@@ -148,7 +148,7 @@ Read/Write Access to github for computer -
 			shows content of key
 		Copy content of key and paste it in new key on github 	
 		
--`git remote origin set-url <url>`
+-`git remote set-url remoteRepoName <url>`
 	Changes url of origin
 	
 -`git clone <url> folderName`
